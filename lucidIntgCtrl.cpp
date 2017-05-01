@@ -13,6 +13,6 @@ lucidIntgCtrl::lucidIntgCtrl(double _Ki)
 
 double lucidIntgCtrl::compute(double dt, double desired, double actual)
 {
-	m_Integral = (desired - actual) * dt;
+	m_Integral += (desired - actual) * dt;
 	return m_Ki * m_Integral;
 }

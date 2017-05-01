@@ -13,7 +13,19 @@ lucidDrvtCtrl::lucidDrvtCtrl(double _Kd)
 
 double lucidDrvtCtrl::compute(double dt, double desired, double actual)
 {
-	double Out_d = (dt != 0) ? ((desired - actual) - m_PrevError)/dt: -1;
-	m_PrevError = (desired - actual);
-	return Out_d*m_Kd;
+	#if 0
+	if(m_PrevError == 0)
+	{
+		// inital value
+		m_PrevError = (desired - actual);
+		return 0;
+	}
+	else
+	#endif
+	{
+		double Out_d = (dt != 0) ? ((desired - actual) - m_PrevError)/dt: -1;
+
+		m_PrevError = (desired - actual);
+		return Out_d*m_Kd;
+	}
 }
