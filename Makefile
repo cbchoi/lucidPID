@@ -4,6 +4,8 @@
 
 CXX := clang++
 
+PROJ_DIR := .
+BIN_DIR := bin
 INC_DIR := include
 MODULES := libLucidPID
 # look for include files in each of the modules
@@ -30,10 +32,12 @@ OBJ := $(patsubst %.cpp,%.o, $(filter %.cpp,$(SRC)))
 libLucidPID.a: $(OBJ)
 	ar -r $@ $(OBJ) 
 	mv $@ ./bin
+	make -C example
 
-clean:
-	rm -r ./bin/*
-	rm -r $(OBJ)
+clean: 
+	rm $(PROJ_DIR)/$(BIN_DIR)/libLucidPID.a
+	rm $(OBJ)
+	make -C example clean
 # include the C include dependencies
 #include $(OBJ:.o=.d)
 # calculate C include dependencies

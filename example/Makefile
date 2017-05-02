@@ -32,7 +32,8 @@ $(MODULES): $(OBJ)
 	clang++ -L$(PROJ_DIR)/bin -o lucidTest $(OBJ) -lLucidPID
 	mv lucidTest $(PROJ_DIR)/bin/lucidTest
 clean:
-	rm -r $(OBJ)
+	rm $(OBJ)
+	rm $(PROJ_DIR)/bin/lucidTest
 # include the C include dependencies
 #include $(OBJ:.o=.d)
 # calculate C include dependencies
