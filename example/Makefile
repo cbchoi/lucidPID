@@ -4,11 +4,12 @@
 
 CXX := clang++
 
-INC_DIR := include
-MODULES := libLucidPID
+PROJ_DIR := ..
+INC_DIR := $(PROJ_DIR)/include
+MODULES := PIDTest
 # look for include files in each of the modules
 CPPFLAGS += $(patsubst %,-I%, $(MODULES))
-CPPFLAGS += -Iinclude -std=c++11 -D_GLIBCXX_USE_NANOSLEEP
+CPPFLAGS += -I$(INC_DIR) -std=c++11 -D_GLIBCXX_USE_NANOSLEEP
 
 # extra libraries if required
 LIBS :=
@@ -27,12 +28,10 @@ OBJ := $(patsubst %.cpp,%.o, $(filter %.cpp,$(SRC)))
 %.o: %.cpp
 	$(CXX) $(CPPFLAGS) -c $< -o $@
 
-libLucidPID.a: $(OBJ)
-	ar -r $@ $(OBJ) 
-	mv $@ ./bin
-
+$(MODULES): $(OBJ)
+	clang++ -L$(PROJ_DIR)/bin -o lucidTest $(OBJ) -lLucidPID
+	mv lucidTest $(PROJ_DIR)/bin/lucidTest
 clean:
-	rm -r ./bin/*
 	rm -r $(OBJ)
 # include the C include dependencies
 #include $(OBJ:.o=.d)
