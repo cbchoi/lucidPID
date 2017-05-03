@@ -1,0 +1,1 @@
+SRC += lucidPlant/lucidPlant.cpp
