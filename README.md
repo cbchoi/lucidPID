@@ -8,7 +8,7 @@ The lucidPID Controller adopts the object-oriented design concepts.
 Utilizing lucidPID Controller is easy and intuitive. All you need to do is just instantiate an instance. 
 
 ### Propositional Controller
-```
+```C++
 double _Kp = 1;
 int    _Loop = 50;
 double desired = 20;
