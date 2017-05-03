@@ -5,33 +5,30 @@
 CXX := clang++
 
 PROJ_DIR := ..
-BIN_DIR	:= bin
-INC_DIR := $(PROJ_DIR)/include
-MODULES := PIDTest
+BIN_DIR := bin
+INC_DIR := include
+MODULES := lucidPID
 # look for include files in each of the modules
 CPPFLAGS += $(patsubst %,-I%, $(MODULES))
-CPPFLAGS += -I$(INC_DIR) -std=c++11 -D_GLIBCXX_USE_NANOSLEEP
+CPPFLAGS += -I$(PROJ_DIR)/$(INC_DIR) -std=c++11 -D_GLIBCXX_USE_NANOSLEEP
 
 # extra libraries if required
-LIBS := -lLucidPID -lLucidPlant 
+LIBS :=
 # each module will add to this
 SRC := 
-# include the description for
-#   each module
+# include the description for each module
 include $(patsubst %, %/module.mk,$(MODULES))
 
 # determine the object files
 OBJ := $(patsubst %.cpp,%.o, $(filter %.cpp,$(SRC))) 
-#  $(patsubst %.y,%.o,     \
-#    $(filter %.y,$(SRC)))
-# link the program
 
 %.o: %.cpp
 	$(CXX) $(CPPFLAGS) -c $< -o $@
 
-$(MODULES): $(OBJ)
-	clang++ -L$(PROJ_DIR)/$(BIN_DIR) -o lucidTest $(OBJ) $(LIBS)
-	mv lucidTest $(PROJ_DIR)/$(BIN_DIR)/lucidTest
-clean:
+libLucidPID.a: $(OBJ)
+	ar -r $@ $(OBJ) 
+	mv $@ $(PROJ_DIR)/$(BIN_DIR)
+
+clean: 
+	rm -f $(PROJ_DIR)/$(BIN_DIR)/libLucidPID.a
 	rm -f $(OBJ)
-	rm -f $(PROJ_DIR)/$(BIN_DIR)/lucidTest
