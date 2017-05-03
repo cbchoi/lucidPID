@@ -7,18 +7,23 @@ The lucidPID Controller adopts the object-oriented design concepts.
 ## How to use it
 Utilizing lucidPID Controller is easy and intuitive. All you need to do is just instantiate an instance. 
 
-### Propositional Controller
+### Proportional Controller
 ```C++
+// Proportional gain
 double _Kp = 1;
-int    _Loop = 50;
+
+// Desired valuer
 double desired = 20;
 double actural = 0;
 double request = 0;
+
+// Instantiating controller
 lucidPropCtrl contrl = lucidPropCtrl(_Kp);
+
 for(int i = 0; i < _Loop; i++)
 {
     request = contrl.compute(desired, actural);
-    actural = plant.compute(request);
+    actual = request; // You must pass request value to the plant
     std::cout << "Desire:" << desired <<"\tRequest:" << request <<"\tActual:" << actural << std::endl; 
 }
 ```
