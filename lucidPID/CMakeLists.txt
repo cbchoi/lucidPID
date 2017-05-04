@@ -15,6 +15,6 @@ add_library(LucidPID STATIC lucidDrvtCtrl.cpp
             lucidPIDCtrl.cpp
             lucidPropCtrl.cpp)
 
-add_definitions(-std=c++11 -D_GLIBCXX_USE_NANOSLEEP)
+add_definitions(-D_GLIBCXX_USE_NANOSLEEP)
 
 file(COPY ${HEADER_FILES} DESTINATION ${INCLUDE_PATH})

@@ -2,13 +2,16 @@ cmake_minimum_required(VERSION 3.7)
 PROJECT(lucidTest)
 
 set(CMAKE_CXX_STANDARD 11)
-#set(CMAKE_PREFIX_PATH ..)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ../bin)
-set(CMAKE_LIBRARY_PATH ../lib)
-set(CMAKE_INCLUDE_PATH ../include)
+set(CUSTOM_LIBRARY_PATH ${CMAKE_BINARY_DIR}/lib)
 
-include_directories("../include")
+include_directories(${CMAKE_BINARY_DIR}/include)
+link_directories(${CMAKE_BINARY_DIR}/lib)
 
+MESSAGE(STATUS ${LIBS})
+add_definitions(-D_GLIBCXX_USE_NANOSLEEP)
 add_executable(lucidTest lucidTest.cpp)
+target_link_libraries(lucidTest ${CUSTOM_LIBRARY_PATH}/libLucidPID.a
+                                ${CUSTOM_LIBRARY_PATH}/libLucidPlant.a)
 
-add_definitions(-std=c++11 -D_GLIBCXX_USE_NANOSLEEP)
+include(debug_macro.cmake)

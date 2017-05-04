@@ -3,8 +3,6 @@ PROJECT(lucidPIDController)
 
 add_subdirectory(lucidPID)
 add_subdirectory(lucidPlant)
-
-include_directories(./include)
 add_subdirectory(example)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ./bin)
