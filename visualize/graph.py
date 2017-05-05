@@ -5,22 +5,22 @@ PD_data = []
 PI_data = []
 PID_data = []
 
-fp = open("../bin/test_P.dat")
+fp = open("../test_P.dat")
 for line in fp:
 	P_data.append(line)
 fp.close()
 
-fp = open("../bin/test_PI.dat")
+fp = open("..//test_PI.dat")
 for line in fp:
 	PI_data.append(line)
 fp.close()
 
-fp = open("../bin/test_PD.dat")
+fp = open("../test_PD.dat")
 for line in fp:
 	PD_data.append(line)
 fp.close()
 
-fp = open("../bin/test_PID.dat")
+fp = open("../test_PID.dat")
 for line in fp:
 	PID_data.append(line)
 fp.close()
