@@ -13,5 +13,3 @@ add_definitions(-D_GLIBCXX_USE_NANOSLEEP)
 add_executable(lucidTest lucidTest.cpp)
 target_link_libraries(lucidTest ${CUSTOM_LIBRARY_PATH}/libLucidPID.a
                                 ${CUSTOM_LIBRARY_PATH}/libLucidPlant.a)
-
-include(debug_macro.cmake)
