@@ -1,8 +1,15 @@
 
+<<<<<<< HEAD
 .idea/lucidPID.iml
 
 .idea/.name
 
+=======
+.idea/.name
+
+.idea/lucidPID.iml
+
+>>>>>>> origin/master
 .idea/misc.xml
 
 .idea/modules.xml
